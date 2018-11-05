@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_author_path(@author) %> |
+<h1><%= @author.name %></h1>
+<h3><%= @author.age %></h3>
+<h3><%= @author.nationality %></h3>
+
+<%= link_to 'Show', books_url %>
+<%= link_to 'Edit', edit_author_path(@author) %>
 <%= link_to 'Back', authors_path %>
