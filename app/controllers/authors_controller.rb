@@ -13,7 +13,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1.json
   def show
     @author = Author.find(params[:id])
-    @books = Book
+    @book = Book.where(author_id: @author.id)
   end
 
   # GET /authors/new
@@ -28,7 +28,7 @@ class AuthorsController < ApplicationController
   # POST /authors
   # POST /authors.json
   def create
-    @author = Author.new(author_params)
+    @author = Author.new(author_params.require(:authors).permit(:name, :age, :nationality, :user_id))
 
     respond_to do |format|
       if @author.save

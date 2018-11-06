@@ -4,6 +4,16 @@
 <h3><%= @author.age %></h3>
 <h3><%= @author.nationality %></h3>
 
-<%= link_to 'Show', books_url %>
+<h4>Books</h4>
+<% @book.each do |book| %>
+
+    <p><%= book.title %></p>
+    <p><%= link_to 'Show', book %></p>
+    <p><%= link_to 'Edit', edit_book_path(book) %></p>
+    <p><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+<% end %>
+
+<%= link_to 'All Books', books_url %>
 <%= link_to 'Edit', edit_author_path(@author) %>
 <%= link_to 'Back', authors_path %>

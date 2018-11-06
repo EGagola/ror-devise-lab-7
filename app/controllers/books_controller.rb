@@ -27,7 +27,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(book_params.require(:books).permit(:title, :page_count, :description, :author_id))
 
     respond_to do |format|
       if @book.save
