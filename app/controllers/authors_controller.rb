@@ -28,7 +28,7 @@ class AuthorsController < ApplicationController
   # POST /authors
   # POST /authors.json
   def create
-    @author = Author.new(author_params.require(:authors).permit(:name, :age, :nationality, :user_id))
+    @author = Author.new(author_params.permit(:name, :age, :nationality, :user_id))
 
     respond_to do |format|
       if @author.save
@@ -45,7 +45,7 @@ class AuthorsController < ApplicationController
   # PATCH/PUT /authors/1.json
   def update
     respond_to do |format|
-      if @author.update(author_params)
+      if @author.update(author_params.permit(:name, :age, :nationality, :user_id))
         format.html { redirect_to @author, notice: 'Author was successfully updated.' }
         format.json { render :show, status: :ok, location: @author }
       else
@@ -73,6 +73,6 @@ class AuthorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_params
-      params.fetch(:author, {})
+      params.permit(:name, :age, :nationality, :user_id)
     end
 end
